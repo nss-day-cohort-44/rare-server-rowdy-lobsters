@@ -40,7 +40,8 @@ def get_single_comment(id):
 			c.author_id,
 			c.content
 			FROM Comments c
-		""")
+			WHERE c.id = ?
+		""", (id,))
 
 		row = db_cursor.fetchone()
 

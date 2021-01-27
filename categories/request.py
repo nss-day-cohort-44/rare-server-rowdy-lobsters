@@ -37,3 +37,42 @@ def get_all_categories():
 
     # Use `json` package to properly serialize list as JSON
     return json.dumps(categories)
+
+def get_single_category(id):
+    with sqlite3.connect("./rare.db") as conn:
+
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        SELECT
+            c.id,
+            c.label
+        FROM categories c
+        WHERE c.id = ?
+        """, (id,))
+
+        row = db_cursor.fetchone()
+
+        category = Category(row['id'], row['label'])
+
+        return json.dumps(category.__dict__)
+
+def create_category(cat):
+
+        with sqlite3.connect("./rare.db") as conn:
+
+            conn.row_factory = sqlite3.Row
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+            INSERT INTO categories
+            (label)
+            VALUES (?)
+            """, (cat["label"]))
+
+            id = db_cursor.lastrowid
+
+            cat["id"] = id
+
+            return json.dumps(cat)
