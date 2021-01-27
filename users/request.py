@@ -44,7 +44,7 @@ def get_single_user(id):
             u.account_type_id
         FROM Users u
         WHERE u.id=?
-        """, (id))
+        """, (id,))
 
         
         data=db_cursor.fetchone()
