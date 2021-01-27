@@ -15,8 +15,7 @@ def get_all_users():
             u.last_name,
             u.email,
             u.username,
-            u.password,
-            u.is_staff
+            u.account_type_id
         FROM Users u
         """)
 
@@ -25,7 +24,7 @@ def get_all_users():
 
         for row in dataset:
             user=User(row['id'], row['first_name'], row['last_name'], row['email'], row['username'],
-            row['password'], row['is_staff'])
+            row['account_type_id'])
 
             users.append(user.__dict__)
     return json.dumps(users)
@@ -42,8 +41,7 @@ def get_single_user(id):
             u.last_name,
             u.email,
             u.username,
-            u.password,
-            u.is_staff
+            u.account_type_id
         FROM Users u
         WHERE u.id=?
         """, (id))
@@ -53,7 +51,7 @@ def get_single_user(id):
 
         
         user = User(data['id'], data['first_name'], data['last_name'], data['email'], data['username'],
-        data['password'], data['is_staff'])
+        data['account_type_id'])
 
     return json.dumps(user.__dict__)
 
@@ -70,14 +68,13 @@ def create_user(new_user):
             last_name,
             email,
             username,
-            password,
-            is_staff
+            account_type_id
         VALUES
-            ( ?, ?, ?, ?, ?, ?)
+            ( ?, ?, ?, ?, ?)
         """, ( new_user['first_name'], 
         new_user['last_name'], new_user['email'], 
-        new_user['username'], new_user['password'],
-        new_user['is_staff']))
+        new_user['username'],
+        new_user['account_type_id']))
 
         id=db_cursor.lastrowid
 
