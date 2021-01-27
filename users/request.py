@@ -64,13 +64,17 @@ def create_user(new_user):
 
         db_cursor.execute("""
         INSERT INTO Users
-            first_name,
+            (first_name,
             last_name,
             email,
+            bio,
             username,
-            account_type_id
+            profile_image_url,
+            created_on,
+            active,
+            account_type_id)
         VALUES
-            ( ?, ?, ?, ?, ?)
+            ( ?, ?, ?, null, ?, null, null, null, ?)
         """, ( new_user['first_name'], 
         new_user['last_name'], new_user['email'], 
         new_user['username'],
