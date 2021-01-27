@@ -1,6 +1,9 @@
 import json
 from posts import get_all_posts, get_single_post
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from users import get_all_users
+from users import get_single_user
+from users import create_user
 from categories import get_all_categories
 
 from tags import get_all_tags, get_single_tag
@@ -63,17 +66,15 @@ class HandleRequests(BaseHTTPRequestHandler):
             ( resource, id ) = parsed
 
             if resource == "categories":
-                # if id is not None:
-                #     response = f"{get_single_category(id)}"
-                # else:
-                #     response = f"{get_all_categories()}"
-                response = f"{get_all_categories()}"
+                if id is not None:
+                    response = f"{get_single_category(id)}"
+                else:
+                    response = f"{get_all_categories()}"
             elif resource == "comments":
-                # if id is not None:
-                #     response = f"{get_single_comment(id)}"
-                # else:
-                #     response = f"{get_all_comments()}"
-                response = f"{get_all_categories()}"
+                if id is not None:
+                    response = f"{get_single_comment(id)}"
+                else:
+                    response = f"{get_all_comments()}"
             elif resource == "posts":
                 if id is not None:
                     response = f"{get_single_post(id)}"
@@ -85,11 +86,10 @@ class HandleRequests(BaseHTTPRequestHandler):
                  else:
                      response = f"{get_all_tags()}"
             elif resource == "users":
-                # if id is not None:
-                #     response = f"{get_single_user(id)}"
-                # else:
-                #     response = f"{get_all_users()}"
-                response = f"{get_all_users()}" 
+                if id is not None:
+                    response = f"{get_single_user(id)}"
+                else:
+                    response = f"{get_all_users()}"
 
         # Response from parse_url() is a tuple with 3 items
         elif len(parsed) == 3:
@@ -112,7 +112,6 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         # Inititialize new post item
         new_item = None
-
         if resource == "categories":
             new_item = create_category(post_body)
         if resource == "comments":
@@ -121,6 +120,8 @@ class HandleRequests(BaseHTTPRequestHandler):
             new_item = create_post(post_body)
         if resource == "tags":
             new_item = create_tags(post_body)
+        if resource == "users":
+            new_item = create_user(post_body)
         
         # Encode the item and send in repsonse
         self.wfile.write(f"{new_item}".encode())
