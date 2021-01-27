@@ -122,7 +122,7 @@ class HandleRequests(BaseHTTPRequestHandler):
             new_item = create_tags(post_body)
         
         # Encode the item and send in repsonse
-        self.wfile.write(f"{new_item".encode())
+        self.wfile.write(f"{new_item}".encode())
 
 def main():
     host = ''
