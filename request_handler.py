@@ -1,9 +1,15 @@
 import json
+from posts import get_all_posts, get_single_post
 from http.server import BaseHTTPRequestHandler, HTTPServer
+<<<<<<< HEAD
 from users import get_all_users
 from users import get_single_user
 from users import create_user
+=======
+from categories import get_all_categories
+>>>>>>> main
 
+from tags import get_all_tags, get_single_tag
 
 
 # A class responsible for responding to HTTP requests from a client.
@@ -75,23 +81,20 @@ class HandleRequests(BaseHTTPRequestHandler):
                 #     response = f"{get_all_comments()}"
                 response = f"{get_all_categories()}"
             elif resource == "posts":
-                # if id is not None:
-                #     response = f"{get_single_post(id)}"
-                # else:
-                #     response = f"{get_all_posts()}"
-                response = f"{get_all_posts()}" 
+                if id is not None:
+                    response = f"{get_single_post(id)}"
+                else:
+                    response = f"{get_all_posts()}"
             elif resource == "tags":
-                # if id is not None:
-                #     response = f"{get_single_tag(id)}"
-                # else:
-                #     response = f"{get_all_tags()}"
-                response = f"{get_all_tags()}" 
+                 if id is not None:
+                     response = f"{get_single_tag(id)}"
+                 else:
+                     response = f"{get_all_tags()}"
             elif resource == "users":
-                # if id is not None:
-                #     response = f"{get_single_user(id)}"
-                # else:
-                #     response = f"{get_all_users()}"
-                response = f"{get_all_users()}" 
+                if id is not None:
+                    response = f"{get_single_user(id)}"
+                else:
+                    response = f"{get_all_users()}"
 
         # Response from parse_url() is a tuple with 3 items
         elif len(parsed) == 3:
