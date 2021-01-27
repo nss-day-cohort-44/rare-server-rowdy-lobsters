@@ -126,7 +126,7 @@ class HandleRequests(BaseHTTPRequestHandler):
 
 def main():
     host = ''
-    post = 8088
+    port = 8088
     HTTPServer((host, port), HandleRequests).serve_forever()
 
 if __name__ == "__main__":
