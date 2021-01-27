@@ -1,6 +1,9 @@
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from posts import get_all_posts, get_single_post
+from users import get_all_users
+from users import get_single_user
+from users import create_user
 from categories import get_all_categories
 from tags import get_all_tags, get_single_tag
 from comments import get_all_comments, get_single_comment, create_comment
@@ -108,7 +111,6 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         # Inititialize new post item
         new_item = None
-
         if resource == "categories":
             new_item = create_category(post_body)
         if resource == "comments":
@@ -117,6 +119,8 @@ class HandleRequests(BaseHTTPRequestHandler):
             new_item = create_post(post_body)
         if resource == "tags":
             new_item = create_tags(post_body)
+        if resource == "users":
+            new_item = create_user(post_body)
         
         # Encode the item and send in repsonse
         self.wfile.write(f"{new_item}".encode())
