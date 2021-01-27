@@ -1,6 +1,6 @@
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
-
+from tags import get_all_tags, get_single_tag
 
 
 # A class responsible for responding to HTTP requests from a client.
@@ -78,11 +78,10 @@ class HandleRequests(BaseHTTPRequestHandler):
                 #     response = f"{get_all_posts()}"
                 response = f"{get_all_posts()}" 
             elif resource == "tags":
-                # if id is not None:
-                #     response = f"{get_single_tag(id)}"
-                # else:
-                #     response = f"{get_all_tags()}"
-                response = f"{get_all_tags()}" 
+                 if id is not None:
+                     response = f"{get_single_tag(id)}"
+                 else:
+                     response = f"{get_all_tags()}"
             elif resource == "users":
                 # if id is not None:
                 #     response = f"{get_single_user(id)}"
