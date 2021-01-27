@@ -1,10 +1,9 @@
 import json
-from posts import get_all_posts, get_single_post
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from posts import get_all_posts, get_single_post
 from categories import get_all_categories
-
 from tags import get_all_tags, get_single_tag
-
+from comments import get_all_comments, get_single_comment, create_comment
 
 # A class responsible for responding to HTTP requests from a client.
 class HandleRequests(BaseHTTPRequestHandler):
@@ -63,17 +62,15 @@ class HandleRequests(BaseHTTPRequestHandler):
             ( resource, id ) = parsed
 
             if resource == "categories":
-                # if id is not None:
-                #     response = f"{get_single_category(id)}"
-                # else:
-                #     response = f"{get_all_categories()}"
-                response = f"{get_all_categories()}"
+                 if id is not None:
+                     response = f"{get_single_category(id)}"
+                 else:
+                     response = f"{get_all_categories()}"
             elif resource == "comments":
-                # if id is not None:
-                #     response = f"{get_single_comment(id)}"
-                # else:
-                #     response = f"{get_all_comments()}"
-                response = f"{get_all_categories()}"
+                 if id is not None:
+                     response = f"{get_single_comment(id)}"
+                 else:
+                     response = f"{get_all_comments()}"
             elif resource == "posts":
                 if id is not None:
                     response = f"{get_single_post(id)}"
@@ -85,11 +82,10 @@ class HandleRequests(BaseHTTPRequestHandler):
                  else:
                      response = f"{get_all_tags()}"
             elif resource == "users":
-                # if id is not None:
-                #     response = f"{get_single_user(id)}"
-                # else:
-                #     response = f"{get_all_users()}"
-                response = f"{get_all_users()}" 
+                 if id is not None:
+                     response = f"{get_single_user(id)}"
+                 else:
+                     response = f"{get_all_users()}"
 
         # Response from parse_url() is a tuple with 3 items
         elif len(parsed) == 3:
