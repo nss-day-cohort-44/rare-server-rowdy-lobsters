@@ -1,13 +1,10 @@
 import json
 from posts import get_all_posts, get_single_post
 from http.server import BaseHTTPRequestHandler, HTTPServer
-<<<<<<< HEAD
 from users import get_all_users
 from users import get_single_user
 from users import create_user
-=======
 from categories import get_all_categories
->>>>>>> main
 
 from tags import get_all_tags, get_single_tag
 
@@ -69,17 +66,15 @@ class HandleRequests(BaseHTTPRequestHandler):
             ( resource, id ) = parsed
 
             if resource == "categories":
-                # if id is not None:
-                #     response = f"{get_single_category(id)}"
-                # else:
-                #     response = f"{get_all_categories()}"
-                response = f"{get_all_categories()}"
+                if id is not None:
+                    response = f"{get_single_category(id)}"
+                else:
+                    response = f"{get_all_categories()}"
             elif resource == "comments":
-                # if id is not None:
-                #     response = f"{get_single_comment(id)}"
-                # else:
-                #     response = f"{get_all_comments()}"
-                response = f"{get_all_categories()}"
+                if id is not None:
+                    response = f"{get_single_comment(id)}"
+                else:
+                    response = f"{get_all_comments()}"
             elif resource == "posts":
                 if id is not None:
                     response = f"{get_single_post(id)}"
