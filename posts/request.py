@@ -51,7 +51,8 @@ def get_single_post(id):
 			p.content,
 			p.approved
 			FROM Posts p
-		""")
+			WHERE id = ?
+		""", (id,))
 
 		row = db_cursor.fetchone()
 
