@@ -37,7 +37,11 @@ def get_single_tag(id):
 				t.label
 				FROM Tags t
 				WHERE t.id = ?
+<<<<<<< HEAD
 			""", (id, ))
+=======
+			""", (id,))
+>>>>>>> main
 
 			data = db_cursor.fetchone()
 
