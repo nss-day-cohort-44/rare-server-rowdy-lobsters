@@ -125,6 +125,7 @@ class HandleRequests(BaseHTTPRequestHandler):
         if resource =="login":
             new_item = login(post_body)
         # Encode the item and send in repsonse
+        print(new_item)
         self.wfile.write(f"{new_item}".encode())
 
 def main():

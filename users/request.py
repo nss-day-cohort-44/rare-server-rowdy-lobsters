@@ -94,6 +94,7 @@ def login(current_user):
 
     if current_user['username'] in list_of_email:
         
+        current_user['valid']=True
         return json.dumps(current_user)
     else:
         return json.dumps(False)
