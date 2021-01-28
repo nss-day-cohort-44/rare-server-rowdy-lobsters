@@ -5,7 +5,7 @@ from users import get_all_users
 from users import get_single_user
 from users import create_user, login
 from categories import get_all_categories, get_single_category, create_category
-from tags import get_all_tags, get_single_tag
+from tags import get_all_tags, get_single_tag, create_tag
 from comments import get_all_comments, get_single_comment, create_comment
 
 # A class responsible for responding to HTTP requests from a client.
@@ -118,7 +118,7 @@ class HandleRequests(BaseHTTPRequestHandler):
         if resource == "posts":
             new_item = create_post(post_body)
         if resource == "tags":
-            new_item = create_tags(post_body)
+            new_item = create_tag(post_body)
         if resource == "users":
             new_item = create_user(post_body)
         if resource =="login":

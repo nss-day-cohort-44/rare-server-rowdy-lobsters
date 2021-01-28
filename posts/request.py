@@ -59,7 +59,7 @@ def get_single_post(id):
 		post = Post( row["id"], row["user_id"], row["category_id"], row["title"], row["publication_date"],
 					row["image_url"], row["content"], row["approved"])
 
-		json.dumps(post.__dict__)
+		return json.dumps(post.__dict__)
 
 def create_post(new_post):
     with sqlite3.connect("./rare.db") as conn:
@@ -87,3 +87,4 @@ def create_post(new_post):
         new_post['id']=id
     
     return json.dumps(new_post)
+		
