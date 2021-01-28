@@ -10,8 +10,11 @@ DROP TABLE IF EXISTS `DemotionQueue`;
 DROP TABLE IF EXISTS `Users`;
 DROP TABLE IF EXISTS `AccountTypes`;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> main
 CREATE TABLE "AccountTypes" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "label" varchar
@@ -147,3 +150,4 @@ SELECT
             c.id,
             c.label
         FROM categories c;
+INSERT INTO AccountTypes ('label') VALUES ('Author');
