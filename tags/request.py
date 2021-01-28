@@ -13,6 +13,7 @@ def get_all_tags():
 			t.id,
 			t.label
 			FROM Tags t
+			ORDER BY Label COLLATE NOCASE
 		""")
 
 		data = db_cursor.fetchall()
@@ -53,7 +54,7 @@ def create_tag(new_tag):
         INSERT INTO Tags
             ( label )
         VALUES
-            ( ? );
+            (?);
         """, (new_tag['label'], ))
 
       id = db_cursor.lastrowid
