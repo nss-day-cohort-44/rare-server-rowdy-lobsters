@@ -1,6 +1,6 @@
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from posts import get_all_posts, get_single_post
+from posts import get_all_posts, get_single_post, create_post
 from users import get_all_users
 from users import get_single_user
 from users import create_user, login
