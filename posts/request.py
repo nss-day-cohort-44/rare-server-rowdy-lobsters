@@ -61,29 +61,29 @@ def get_single_post(id):
 
 		json.dumps(post.__dict__)
 
-# def create_post(new_post):
-#     with sqlite3.connect("./rare.db") as conn:
-#         conn.row_factory=sqlite3.Row
-#         db_cursor=conn.cursor()
+def create_post(new_post):
+    with sqlite3.connect("./rare.db") as conn:
+        conn.row_factory=sqlite3.Row
+        db_cursor=conn.cursor()
         
-#         db_cursor.execute("""
-#         INSERT INTO Users
-#             (user_id,
-# 			category_id,
-# 			title,
-# 			publication_date,
-# 			image_url,
-# 			content,
-# 			approved
-#         VALUES
-#             ( ?, ?, ?, ?, null, ?, null)
-#         """, ( new_post['user_id'], 
-#         new_post['category_id'], new_post['title'], 
-#         new_post['publication_date'],
-#         new_post['content'])
+        db_cursor.execute("""
+        INSERT INTO Users
+            (user_id,
+			category_id,
+			title,
+			publication_date,
+			image_url,
+			content,
+			approved
+        VALUES
+            ( ?, ?, ?, ?, null, ?, null)
+        """, ( new_post['user_id'], 
+        new_post['category_id'], new_post['title'], 
+        new_post['publication_date'],
+        new_post['content']))
 
-#         id=db_cursor.lastrowid
+        id=db_cursor.lastrowid
 
-#         new_user['id']=id
+        new_user['id']=id
     
-#     return json.dumps(new_post)
+    return json.dumps(new_post)
