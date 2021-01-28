@@ -23,7 +23,7 @@ CREATE TABLE "Users" (
   "username" varchar,
   "password" varchar,
   "profile_image_url" varchar,
-  "created_on" date,
+  "created_on" integer,
   "active" bit,
   "account_type_id" INTEGER,
   FOREIGN KEY(`account_type_id`) REFERENCES `AccountTypes`(`id`)
@@ -130,3 +130,4 @@ INSERT INTO AccountTypes ('label') VALUES ('Author');
 INSERT INTO Users values (null,'david', 'williams',  'david@david.com', null,'dwillz', 'yes', null, null, null, '1');
 
 
+SELECT * FROM Users
