@@ -1,3 +1,17 @@
+DROP TABLE IF EXISTS `Categories`;
+DROP TABLE IF EXISTS `Tags`;
+DROP TABLE IF EXISTS `Reactions`;
+DROP TABLE IF EXISTS `PostReactions`;
+DROP TABLE IF EXISTS `Posts`;
+DROP TABLE IF EXISTS `PostTags`;
+DROP TABLE IF EXISTS `Comments`;
+DROP TABLE IF EXISTS `Subscriptions`;
+DROP TABLE IF EXISTS `DemotionQueue`;
+DROP TABLE IF EXISTS `Users`;
+DROP TABLE IF EXISTS `AccountTypes`;
+
+
+
 CREATE TABLE "AccountTypes" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "label" varchar
@@ -9,6 +23,7 @@ CREATE TABLE "Users" (
   "email" varchar,
   "bio" varchar,
   "username" varchar,
+  "password" varchar,
   "profile_image_url" varchar,
   "created_on" date,
   "active" bit,
@@ -114,7 +129,7 @@ INSERT INTO Reactions ('label', 'image_url') VALUES ('heart', 'https://lh3.googl
 INSERT INTO AccountTypes ('label') VALUES ('Admin');
 INSERT INTO AccountTypes ('label') VALUES ('Author');
 
-INSERT INTO Users values (null,'silas', 'Lowe',  'silas@silas.com', null,'slowe', null, null, null, '1');
+INSERT INTO Users values (null,'silas', 'Lowe',  'silas@silas.com', null,'slowe', 'password', null, null, null, '1');
 
 
 SELECT
