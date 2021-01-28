@@ -88,12 +88,14 @@ def create_user(new_user):
 
 def login(current_user):
     all_users=json.loads(get_all_users())
+    
     list_of_email=[]
+    
     for user in all_users:
         list_of_email.append(user['email'])
+        
 
     if current_user['username'] in list_of_email:
-        
         current_user['valid']=True
         return json.dumps(current_user)
     else:
