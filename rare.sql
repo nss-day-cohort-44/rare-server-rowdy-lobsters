@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS `PostTags`;
 DROP TABLE IF EXISTS `Comments`;
 DROP TABLE IF EXISTS `Subscriptions`;
 DROP TABLE IF EXISTS `DemotionQueue`;
+<<<<<<< HEAD
 DROP TABLE IF EXISTS `AccountTypes`;
 DROP TABLE IF EXISTS `Users`;
 
@@ -26,6 +27,27 @@ CREATE TABLE `Users` (
   `created_on` date,
   `active` bit,
   `account_type_id` INTEGER,
+=======
+DROP TABLE IF EXISTS `Users`;
+DROP TABLE IF EXISTS `AccountTypes`;
+
+CREATE TABLE "AccountTypes" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "label" varchar
+);
+CREATE TABLE "Users" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "first_name" varchar,
+  "last_name" varchar,
+  "email" varchar,
+  "bio" varchar,
+  "username" varchar,
+  "password" varchar,
+  "profile_image_url" varchar,
+  "created_on" integer,
+  "active" bit,
+  "account_type_id" INTEGER,
+>>>>>>> main
   FOREIGN KEY(`account_type_id`) REFERENCES `AccountTypes`(`id`)
 );
 CREATE TABLE `DemotionQueue` (
@@ -132,3 +154,7 @@ INSERT INTO Users values (null,'david', 'williams',  'david@david.com', 'passwor
 
 INSERT INTO Users values (null,'jas', 'kaset',  'jk@jk.com', null, 'jk', 'jk', null, null, null, '1');
 
+INSERT INTO Users values (null,'david', 'williams',  'david@david.com', null,'dwillz', 'yes', null, null, null, '1');
+
+
+SELECT * FROM Users
