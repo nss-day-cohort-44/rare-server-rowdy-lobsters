@@ -13,6 +13,7 @@ def get_all_tags():
 			t.id,
 			t.label
 			FROM Tags t
+			ORDER BY Label COLLATE NOCASE
 		""")
 
 		data = db_cursor.fetchall()
@@ -39,8 +40,25 @@ def get_single_tag(id):
 				WHERE t.id = ?
 			""", (id,))
 
-			row = db_cursor.fetchone()
+			data = db_cursor.fetchone()
 
-			tag = Tag(row["id"], row["label"])
+			tag = Tag(data["id"], data["label"])
 
 			return json.dumps(tag.__dict__)
+
+def create_tag(new_tag):
+    with sqlite3.connect("./rare.db") as conn:
+      db_cursor = conn.cursor()
+
+      db_cursor.execute("""
+        INSERT INTO Tags
+            ( label )
+        VALUES
+            (?);
+        """, (new_tag['label'], ))
+
+      id = db_cursor.lastrowid
+
+      new_tag['id'] = id
+
+    return json.dumps(new_tag)
