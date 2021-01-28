@@ -147,7 +147,6 @@ INSERT INTO Tags ('label') VALUES ('History Lesson');
 INSERT INTO Reactions ('label', 'image_url') VALUES ('happy', 'https://pngtree.com/so/happy');
 INSERT INTO Reactions ('label', 'image_url') VALUES ('heart', 'https://lh3.googleusercontent.com/proxy/BlwtWdiO1ucoroiKKuJN5CpiAUFA4tdHYRT_yXzxWLpNVTJS7UEVp1JV-lYshjAPeS7wd1pqXk6mpxY6rrSAPXD5NbBoE9hTf-1PpzofQbzNyH__1miggtO2IQKktovnAyPzjCW6T9mQG6JvgdHklZUaMd-YnIxeBPuP1lBw2E7fp9d6AR68');
 INSERT INTO AccountTypes ('label') VALUES ('Admin');
-<<<<<<< HEAD
 INSERT INTO AccountTypes ('label') VALUES ('Author');
 
 
@@ -159,6 +158,4 @@ INSERT INTO Users values (null,'david', 'williams',  'david@david.com', null,'dw
 
 
 SELECT * FROM Users
-=======
 INSERT INTO AccountTypes ('label') VALUES ('Author');
->>>>>>> main

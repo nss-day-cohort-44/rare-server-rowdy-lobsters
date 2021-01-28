@@ -37,11 +37,7 @@ def get_single_tag(id):
 				t.label
 				FROM Tags t
 				WHERE t.id = ?
-<<<<<<< HEAD
-			""", (id, ))
-=======
 			""", (id,))
->>>>>>> main
 
 			data = db_cursor.fetchone()
 
@@ -49,7 +45,7 @@ def get_single_tag(id):
 
 			return json.dumps(tag.__dict__)
 
-def create_tags(new_tag):
+def create_tag(new_tag):
     with sqlite3.connect("./rare.db") as conn:
       db_cursor = conn.cursor()
 
