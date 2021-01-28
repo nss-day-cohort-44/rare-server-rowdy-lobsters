@@ -114,11 +114,6 @@ INSERT INTO Reactions ('label', 'image_url') VALUES ('heart', 'https://lh3.googl
 INSERT INTO AccountTypes ('label') VALUES ('Admin');
 INSERT INTO AccountTypes ('label') VALUES ('Author');
 
-<<<<<<< HEAD
-INSERT INTO Users values (null,'david', 'williams',  'david@david.com', null,'dwillz', null, null, null, '1')
-=======
-SELECT
-            c.id,
-            c.label
-        FROM categories c;
->>>>>>> main
+INSERT INTO Users values (null,'david', 'williams',  'david@david.com', null,'dwillz', null, null, null, '1');
+
+
