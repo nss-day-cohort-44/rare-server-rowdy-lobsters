@@ -3,7 +3,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from posts import get_all_posts, get_single_post
 from users import get_all_users
 from users import get_single_user
-from users import create_user
+from users import create_user, login
 from categories import get_all_categories, get_single_category, create_category
 from tags import get_all_tags, get_single_tag
 from comments import get_all_comments, get_single_comment, create_comment
@@ -121,8 +121,10 @@ class HandleRequests(BaseHTTPRequestHandler):
             new_item = create_tags(post_body)
         if resource == "users":
             new_item = create_user(post_body)
-        
+        if resource =="login":
+            new_item = login(post_body)
         # Encode the item and send in repsonse
+        print(new_item)
         self.wfile.write(f"{new_item}".encode())
 
 def main():
