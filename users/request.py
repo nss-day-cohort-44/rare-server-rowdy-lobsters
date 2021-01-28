@@ -15,6 +15,7 @@ def get_all_users():
             u.last_name,
             u.email,
             u.username,
+            password,
             u.account_type_id
         FROM Users u
         """)
@@ -24,6 +25,7 @@ def get_all_users():
 
         for row in dataset:
             user=User(row['id'], row['first_name'], row['last_name'], row['email'], row['username'],
+            row['password'],
             row['account_type_id'])
 
             users.append(user.__dict__)
@@ -41,6 +43,7 @@ def get_single_user(id):
             u.last_name,
             u.email,
             u.username,
+            password,
             u.account_type_id
         FROM Users u
         WHERE u.id=?
@@ -51,6 +54,7 @@ def get_single_user(id):
 
         
         user = User(data['id'], data['first_name'], data['last_name'], data['email'], data['username'],
+        data['password'],
         data['account_type_id'])
 
     return json.dumps(user.__dict__)
@@ -69,15 +73,17 @@ def create_user(new_user):
             email,
             bio,
             username,
+            password,
             profile_image_url,
             created_on,
             active,
             account_type_id)
         VALUES
-            ( ?, ?, ?, null, ?, null, ?, null, ?)
+            ( ?, ?, ?, null, ?, ?, null, ?, null, ?)
         """, ( new_user['first_name'], 
         new_user['last_name'], new_user['email'], 
         new_user['username'],
+        new_user['password'],
         new_user['created_on'],
         new_user['account_type_id']))
 
