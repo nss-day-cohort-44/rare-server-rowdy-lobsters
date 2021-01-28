@@ -7,6 +7,7 @@ from users import create_user, login
 from categories import get_all_categories, get_single_category, create_category
 from tags import get_all_tags, get_single_tag
 from comments import get_all_comments, get_single_comment, create_comment
+from post_tags import get_all_post_tags, create_post_tag
 
 # A class responsible for responding to HTTP requests from a client.
 class HandleRequests(BaseHTTPRequestHandler):
@@ -89,13 +90,13 @@ class HandleRequests(BaseHTTPRequestHandler):
                      response = f"{get_single_user(id)}"
                  else:
                      response = f"{get_all_users()}"
-
+            elif resource == "postTags":
+                     response = f"{get_all_post_tags()}"
         # Response from parse_url() is a tuple with 3 items
         elif len(parsed) == 3:
             ( resource, key, value ) = parsed
 
             # Stretch goal queries 
-
         self.wfile.write(response.encode())
 
     def do_POST(self):
@@ -121,8 +122,11 @@ class HandleRequests(BaseHTTPRequestHandler):
             new_item = create_tags(post_body)
         if resource == "users":
             new_item = create_user(post_body)
-        if resource =="login":
+        if resource == "login":
             new_item = login(post_body)
+        if resource == "postTags":
+            new_item = create_post_tag(post_body)
+            
         # Encode the item and send in repsonse
         print(new_item)
         self.wfile.write(f"{new_item}".encode())
