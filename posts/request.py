@@ -67,14 +67,14 @@ def create_post(new_post):
         db_cursor=conn.cursor()
         
         db_cursor.execute("""
-        INSERT INTO Users
+        INSERT INTO Posts
             (user_id,
 			category_id,
 			title,
 			publication_date,
 			image_url,
 			content,
-			approved
+			approved)
         VALUES
             ( ?, ?, ?, ?, null, ?, null)
         """, ( new_post['user_id'], 
@@ -84,6 +84,6 @@ def create_post(new_post):
 
         id=db_cursor.lastrowid
 
-        new_user['id']=id
+        new_post['id']=id
     
     return json.dumps(new_post)
