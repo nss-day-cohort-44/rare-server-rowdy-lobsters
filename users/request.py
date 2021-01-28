@@ -101,14 +101,16 @@ def login(current_user):
     all_users=json.loads(get_all_users())
     counter_list = list(enumerate(all_users, 0))
     # print(counter_list)
+    found_user={}
     for item in counter_list:
         if current_user['username'] == item[1]['email'] and current_user['password']==item[1]['password']:
-            current_user['valid']=True
-            return json.dumps(current_user)
-            break
-        else:
-            current_user['valid']=False
-            return json.dumps(current_user)
+            found_user=(item[1])
+            found_user['valid']=True
+            return json.dumps(found_user)
+    
+    found_user['valid']=False
+    return(json.dumps(found_user))
+    
 
 
     
