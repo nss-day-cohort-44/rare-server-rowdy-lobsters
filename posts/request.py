@@ -41,7 +41,7 @@ def get_single_post(id):
 		db_cursor = conn.cursor()
 
 		db_cursor.execute("""
-			SELECT
+		SELECT
 			p.id,
 			p.user_id,
 			p.category_id,
@@ -49,9 +49,13 @@ def get_single_post(id):
 			p.publication_date,
 			p.image_url,
 			p.content,
-			p.approved
-			FROM Posts p
-			WHERE id = ?
+			p.approved,
+			u.first_name,
+			u.last_name
+		FROM Posts p
+		JOIN Users u
+			ON u.id = p.user_id
+		WHERE p.id = ?
 		""", (id,))
 
 		row = db_cursor.fetchone()
