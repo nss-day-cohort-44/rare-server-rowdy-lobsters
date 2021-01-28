@@ -8,7 +8,6 @@ DROP TABLE IF EXISTS `Comments`;
 DROP TABLE IF EXISTS `Subscriptions`;
 DROP TABLE IF EXISTS `DemotionQueue`;
 DROP TABLE IF EXISTS `Users`;
-DROP TABLE IF EXISTS `AccountTypes`;
 
 CREATE TABLE "AccountTypes" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,7 +20,7 @@ CREATE TABLE "Users" (
   "email" varchar,
   "bio" varchar,
   "username" varchar,
-  "password" varchar,
+  "password" VARCHAR,
   "profile_image_url" varchar,
   "created_on" date,
   "active" bit,
