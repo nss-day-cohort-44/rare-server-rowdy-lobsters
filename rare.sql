@@ -29,7 +29,6 @@ CREATE TABLE `Users` (
   `account_type_id` INTEGER,
 =======
 DROP TABLE IF EXISTS `Users`;
-DROP TABLE IF EXISTS `AccountTypes`;
 
 CREATE TABLE "AccountTypes" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -42,7 +41,7 @@ CREATE TABLE "Users" (
   "email" varchar,
   "bio" varchar,
   "username" varchar,
-  "password" varchar,
+  "password" VARCHAR,
   "profile_image_url" varchar,
   "created_on" date,
   "active" bit,
@@ -148,6 +147,7 @@ INSERT INTO Reactions ('label', 'image_url') VALUES ('happy', 'https://pngtree.c
 INSERT INTO Reactions ('label', 'image_url') VALUES ('heart', 'https://lh3.googleusercontent.com/proxy/BlwtWdiO1ucoroiKKuJN5CpiAUFA4tdHYRT_yXzxWLpNVTJS7UEVp1JV-lYshjAPeS7wd1pqXk6mpxY6rrSAPXD5NbBoE9hTf-1PpzofQbzNyH__1miggtO2IQKktovnAyPzjCW6T9mQG6JvgdHklZUaMd-YnIxeBPuP1lBw2E7fp9d6AR68');
 INSERT INTO AccountTypes ('label') VALUES ('Admin');
 INSERT INTO AccountTypes ('label') VALUES ('Author');
+<<<<<<< HEAD
 
 
 INSERT INTO Users values (null,'david', 'williams',  'david@david.com', 'password', null,'dwillz', null, null, null, '1');
@@ -159,3 +159,5 @@ INSERT INTO Users values (null,'david', 'williams',  'david@david.com', null,'dw
 
 SELECT * FROM Users
 INSERT INTO AccountTypes ('label') VALUES ('Author');
+=======
+>>>>>>> main
