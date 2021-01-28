@@ -131,7 +131,18 @@ INSERT INTO AccountTypes ('label') VALUES ('Author');
 
 INSERT INTO Users values (null,'silas', 'Lowe',  'silas@silas.com', null,'slowe', 'password', null, null, null, '1');
 
-
+-- CREATE TABLE "Posts" (
+--   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+--   "user_id" INTEGER,
+--   "category_id" INTEGER,
+--   "title" varchar,
+--   "publication_date" date,
+--   "image_url" varchar,
+--   "content" varchar,
+--   "approved" bit
+-- );
+;
+INSERT INTO Posts values (null, 1, 2, "Test post", 01282021, null, "Does this post appear", null);
 SELECT
             c.id,
             c.label
