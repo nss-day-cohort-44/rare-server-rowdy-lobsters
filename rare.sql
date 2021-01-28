@@ -8,6 +8,10 @@ DROP TABLE IF EXISTS `Comments`;
 DROP TABLE IF EXISTS `Subscriptions`;
 DROP TABLE IF EXISTS `DemotionQueue`;
 DROP TABLE IF EXISTS `Users`;
+<<<<<<< HEAD
+=======
+DROP TABLE IF EXISTS `AccountTypes`;
+>>>>>>> wb-register
 
 CREATE TABLE "AccountTypes" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -126,4 +130,10 @@ INSERT INTO Reactions ('label', 'image_url') VALUES ('heart', 'https://lh3.googl
 INSERT INTO AccountTypes ('label') VALUES ('Admin');
 INSERT INTO AccountTypes ('label') VALUES ('Author');
 
+<<<<<<< HEAD
 INSERT INTO Users values (null,'david', 'williams',  'david@david.com', null,'dwillz', "password", null, null, null, '1')
+=======
+INSERT INTO Users values (null,'david', 'williams',  'david@david.com', null,'dwillz', 'yes', null, null, null, '1');
+
+
+>>>>>>> wb-register
