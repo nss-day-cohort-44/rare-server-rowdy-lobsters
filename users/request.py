@@ -99,17 +99,16 @@ def create_user(new_user):
 
 def login(current_user):
     all_users=json.loads(get_all_users())
-    
-    list_of_email=[]
-    
-    for user in all_users:
-        list_of_email.append(user['email'])
-        
+    counter_list = list(enumerate(all_users, 0))
+    # print(counter_list)
+    for item in counter_list:
+        if current_user['username'] == item[1]['email'] and current_user['password']==item[1]['password']:
+            current_user['valid']=True
+            return json.dumps(current_user)
+            break
+        else:
+            current_user['valid']=False
+            return json.dumps(current_user)
 
-    if current_user['username'] in list_of_email:
-        current_user['valid']=True
-        return json.dumps(current_user)
-    else:
-        return json.dumps(False)
-    
+
     

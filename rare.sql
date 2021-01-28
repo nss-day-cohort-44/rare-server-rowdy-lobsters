@@ -8,7 +8,10 @@ DROP TABLE IF EXISTS `Comments`;
 DROP TABLE IF EXISTS `Subscriptions`;
 DROP TABLE IF EXISTS `DemotionQueue`;
 DROP TABLE IF EXISTS `Users`;
+<<<<<<< HEAD
 DROP TABLE IF EXISTS `AccountTypes`;
+=======
+>>>>>>> main
 
 <<<<<<< HEAD
 
@@ -26,7 +29,11 @@ CREATE TABLE "Users" (
   "email" varchar,
   "bio" varchar,
   "username" varchar,
+<<<<<<< HEAD
   "password" varchar,
+=======
+  "password" VARCHAR,
+>>>>>>> main
   "profile_image_url" varchar,
   "created_on" date,
   "active" bit,
