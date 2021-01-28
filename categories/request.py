@@ -69,7 +69,7 @@ def create_category(cat):
             INSERT INTO categories
             (label)
             VALUES (?)
-            """, (cat["label"]))
+            """, (cat["label"],))
 
             id = db_cursor.lastrowid
 
