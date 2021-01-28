@@ -8,10 +8,6 @@ DROP TABLE IF EXISTS `Comments`;
 DROP TABLE IF EXISTS `Subscriptions`;
 DROP TABLE IF EXISTS `DemotionQueue`;
 DROP TABLE IF EXISTS `Users`;
-<<<<<<< HEAD
-=======
-DROP TABLE IF EXISTS `AccountTypes`;
->>>>>>> wb-register
 
 CREATE TABLE "AccountTypes" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,7 +22,7 @@ CREATE TABLE "Users" (
   "username" varchar,
   "password" VARCHAR,
   "profile_image_url" varchar,
-  "created_on" date,
+  "created_on" integer,
   "active" bit,
   "account_type_id" INTEGER,
   FOREIGN KEY(`account_type_id`) REFERENCES `AccountTypes`(`id`)

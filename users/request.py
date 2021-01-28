@@ -15,7 +15,8 @@ def get_all_users():
             u.last_name,
             u.email,
             u.username,
-            password,
+            u.password,
+            u.created_on,
             u.account_type_id
         FROM Users u
         """)
@@ -26,6 +27,7 @@ def get_all_users():
         for row in dataset:
             user=User(row['id'], row['first_name'], row['last_name'], row['email'], row['username'],
             row['password'],
+            row['created_on'],
             row['account_type_id'])
 
             users.append(user.__dict__)
@@ -43,7 +45,8 @@ def get_single_user(id):
             u.last_name,
             u.email,
             u.username,
-            password,
+            u.password,
+            u.created_on,
             u.account_type_id
         FROM Users u
         WHERE u.id=?
@@ -55,6 +58,7 @@ def get_single_user(id):
         
         user = User(data['id'], data['first_name'], data['last_name'], data['email'], data['username'],
         data['password'],
+        data['created_on'],
         data['account_type_id'])
 
     return json.dumps(user.__dict__)
@@ -65,7 +69,7 @@ def create_user(new_user):
     with sqlite3.connect("./rare.db") as conn:
         conn.row_factory=sqlite3.Row
         db_cursor=conn.cursor()
-
+        print(new_user)
         db_cursor.execute("""
         INSERT INTO Users
             (first_name,
