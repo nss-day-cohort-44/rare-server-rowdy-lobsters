@@ -76,3 +76,13 @@ def create_category(cat):
             cat["id"] = id
 
             return json.dumps(cat)
+
+def delete_category(id):
+    with sqlite3.connect("./rare.db") as conn:
+
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM categories
+        WHERE id = ?
+        """, (id,))
