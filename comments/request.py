@@ -61,7 +61,7 @@ def create_comment(comment):
 		author_id,
 		content,
 		created_on)
-		VALUES (?, ?, ?)
+		VALUES (?, ?, ?, ?)
 		""", (comment["post_id"], comment["author_id"], comment["content"], comment["created_on"]))
 
 		id = db_cursor.lastrowid
