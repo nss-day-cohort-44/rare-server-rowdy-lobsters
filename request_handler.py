@@ -1,10 +1,6 @@
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
-<<<<<<< HEAD
-from posts import get_all_posts, get_single_post, create_post, update_post
-=======
-from posts import get_all_posts, get_single_post, create_post, delete_post
->>>>>>> main
+from posts import get_all_posts, get_single_post, create_post, delete_post, update_post
 from users import get_all_users
 from users import get_single_user
 from users import create_user, login
@@ -157,7 +153,7 @@ class HandleRequests(BaseHTTPRequestHandler):
 
 
     def do_PUT(self):
-        print("hello")
+        
         content_len=int(self.headers.get('content-length',0))
         post_body = self.rfile.read(content_len)
         post_body = json.loads(post_body)
@@ -165,8 +161,9 @@ class HandleRequests(BaseHTTPRequestHandler):
         (resource, id) = self.parse_url(self.path)
 
         success = False
-        print("dude")
+        print(post_body)
         if resource == "posts":
+            
             success = update_post(id, post_body)
 
 
