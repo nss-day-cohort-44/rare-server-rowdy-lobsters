@@ -68,6 +68,6 @@ def delete_tag(id):
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-        DELETE FROM tag
+        DELETE FROM tags
         WHERE id = ?
         """, (id, ))
