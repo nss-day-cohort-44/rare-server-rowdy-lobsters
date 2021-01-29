@@ -4,7 +4,7 @@ from posts import get_all_posts, get_single_post, create_post, delete_post, upda
 from users import get_all_users
 from users import get_single_user
 from users import create_user, login
-from categories import get_all_categories, get_single_category, create_category, delete_category
+from categories import get_all_categories, get_single_category, create_category, delete_category, update_category
 from tags import get_all_tags, get_single_tag, create_tag
 from comments import get_all_comments, get_single_comment, create_comment
 from post_tags import get_all_post_tags, create_post_tag
@@ -157,7 +157,7 @@ class HandleRequests(BaseHTTPRequestHandler):
         content_len=int(self.headers.get('content-length',0))
         post_body = self.rfile.read(content_len)
         post_body = json.loads(post_body)
-
+        
         (resource, id) = self.parse_url(self.path)
 
         success = False
