@@ -127,6 +127,26 @@ class HandleRequests(BaseHTTPRequestHandler):
         print(new_item)
         self.wfile.write(f"{new_item}".encode())
 
+    def do_DELETE(self):
+        # Set a 204 response code
+        self._set_headers(204)
+
+        # Parse the URL
+        (resource, id) = self.parse_url(self.path)
+
+        #Delete a single animal from the list
+        if resource == "categories":
+            delete_category(id)
+        if resource == "comments":
+            delete_comment(id)
+        if resource == "posts":
+            delete_post(id)
+        if resource == "tags":
+            delete_tag(id)
+
+        # Encode the new animal and send in response
+        self.wfile.write("".encode())
+
 def main():
     host = ''
     port = 8088
