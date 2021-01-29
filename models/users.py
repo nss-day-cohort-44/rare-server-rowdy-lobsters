@@ -5,16 +5,16 @@ class User:
         self.first_name = first_name
         self.last_name = last_name
 
-        if email is not "":
+        if email != "":
             self.email = email
 
-        if username is not "":
+        if username != "":
             self.username = username
 
-        if password is not "":
+        if password != "":
             self.password = password
 
-        if created_on is not "":
+        if created_on != "":
             self.created_on = created_on
-            
+
         self.account_type_id=account_type_id
