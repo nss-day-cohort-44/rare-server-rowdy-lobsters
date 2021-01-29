@@ -1,6 +1,6 @@
 import json
 import sqlite3
-from models import Post, User
+from models import Post, User, Tag
 
 def get_all_posts():
 
@@ -35,7 +35,24 @@ def get_all_posts():
 			
 			user = User(row["user_id"], row['first_name'], row['last_name'])
 
+			db_cursor.execute("""
+			SELECT
+				t.id,
+				t.label
+			FROM Tags t
+			JOIN PostTags pt
+			WHERE pt.post_id = ? AND pt.tag_id = t.id
+			""", (row["id"],))
+
+			tag_data = db_cursor.fetchall()
+			tags = []
+
+			for tag_row in tag_data:
+				tag = Tag(tag_row["id"], tag_row["label"])
+				tags.append(tag.__dict__)
+
 			post.user = user.__dict__
+			post.tags = tags
 		
 			posts.append(post.__dict__)
 		
@@ -73,7 +90,24 @@ def get_single_post(id):
 
 		user = User(row["user_id"], row['first_name'], row['last_name'])
 
+		db_cursor.execute("""
+			SELECT
+				t.id,
+				t.label
+			FROM Tags t
+			JOIN PostTags pt
+			WHERE pt.post_id = ? AND pt.tag_id = t.id
+			""", (row["id"],))
+
+		tag_data = db_cursor.fetchall()
+		tags = []
+
+		for tag_row in tag_data:
+			tag = Tag(tag_row["id"], tag_row["label"])
+			tags.append(tag.__dict__)
+
 		post.user = user.__dict__
+		post.tags = tags
 
 		return json.dumps(post.__dict__)
 
