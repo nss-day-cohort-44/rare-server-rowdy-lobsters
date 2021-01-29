@@ -13,7 +13,8 @@ def get_all_comments():
 			c.id,
 			c.post_id,
 			c.author_id,
-			c.content
+			c.content,
+			c.created_on
 			FROM Comments c
 		""")
 
@@ -21,7 +22,7 @@ def get_all_comments():
 		comments = []
 
 		for row in data:
-			comment = Comment(row["id"], row["post_id"], row["author_id"], row["content"])
+			comment = Comment(row["id"], row["post_id"], row["author_id"], row["content"], row["created_on"])
 			comments.append(comment.__dict__)
 
 		return json.dumps(comments)
@@ -38,14 +39,15 @@ def get_single_comment(id):
 			c.id,
 			c.post_id,
 			c.author_id,
-			c.content
+			c.content,
+			c.created_on
 			FROM Comments c
 			WHERE c.id = ?
 		""", (id,))
 
 		row = db_cursor.fetchone()
 
-		comment = Comment(row["id"], row["post_id"], row["author_id"], row["content"])
+		comment = Comment(row["id"], row["post_id"], row["author_id"], row["content"], row["created_on"])
 
 		return json.dumps(comment.__dict__)
 
