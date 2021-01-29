@@ -59,9 +59,10 @@ def create_comment(comment):
 		INSERT INTO Comments
 		(post_id,
 		author_id,
-		content)
+		content,
+		created_on)
 		VALUES (?, ?, ?)
-		""", (comment["post_id"], comment["author_id"], comment["content"]))
+		""", (comment["post_id"], comment["author_id"], comment["content"], comment["created_on"]))
 
 		id = db_cursor.lastrowid
 
