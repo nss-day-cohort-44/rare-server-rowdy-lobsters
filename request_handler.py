@@ -161,11 +161,10 @@ class HandleRequests(BaseHTTPRequestHandler):
         (resource, id) = self.parse_url(self.path)
 
         success = False
-        print(post_body)
         if resource == "posts":
-            
             success = update_post(id, post_body)
-
+        elif resource == "categories":
+            success = update_category(id, post_body)
 
 
         if success:
