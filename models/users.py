@@ -4,8 +4,17 @@ class User:
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
-        self.email = email
-        self.username = username
-        self.password = password
-        self.created_on = created_on
+
+        if email != "":
+            self.email = email
+
+        if username != "":
+            self.username = username
+
+        if password != "":
+            self.password = password
+
+        if created_on != "":
+            self.created_on = created_on
+
         self.account_type_id=account_type_id

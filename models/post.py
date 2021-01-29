@@ -22,3 +22,4 @@ class Post:
 		self.content = content
 		self.approved = approved
 		self.user = None
+		self.tags = None
