@@ -1,6 +1,6 @@
 import json
 import sqlite3
-from models import Post, User, Tag
+from models import Post, User, Tag, Category
 
 def get_all_posts():
 
@@ -20,10 +20,13 @@ def get_all_posts():
 			p.content,
 			p.approved,
 			u.first_name,
-			u.last_name
+			u.last_name,
+			c.label
 		FROM Posts p
 		JOIN Users u
 			ON u.id = p.user_id
+		JOIN Categories c
+			ON c.id = p.category_id
 		""")
 
 		data = db_cursor.fetchall()
@@ -34,6 +37,8 @@ def get_all_posts():
 						row["image_url"], row["content"], row["approved"])
 			
 			user = User(row["user_id"], row['first_name'], row['last_name'])
+			
+			category=Category(row["category_id"], row["label"])
 
 			db_cursor.execute("""
 			SELECT
@@ -54,8 +59,11 @@ def get_all_posts():
 				tags.append(tag.__dict__)
 
 			post.user = user.__dict__
+
 			post.tags = tags
-		
+			
+			post.category=category.__dict__
+			
 			posts.append(post.__dict__)
 		
 		return json.dumps(posts)
@@ -78,10 +86,13 @@ def get_single_post(id):
 			p.content,
 			p.approved,
 			u.first_name,
-			u.last_name
+			u.last_name,
+			c.label
 		FROM Posts p
 		JOIN Users u
 			ON u.id = p.user_id
+		JOIN Categories c
+			ON c.id = p.category_id
 		WHERE p.id = ?
 		""", (id,))
 
@@ -91,6 +102,8 @@ def get_single_post(id):
 					row["image_url"], row["content"], row["approved"])
 
 		user = User(row["user_id"], row['first_name'], row['last_name'])
+		
+		category=Category(row["category_id"], row["label"])
 
 		db_cursor.execute("""
 			SELECT
@@ -111,6 +124,8 @@ def get_single_post(id):
 			tags.append(tag.__dict__)
 
 		post.user = user.__dict__
+		post.category=category.__dict__
+
 		post.tags = tags
 
 		return json.dumps(post.__dict__)
