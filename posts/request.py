@@ -38,7 +38,8 @@ def get_all_posts():
 			db_cursor.execute("""
 			SELECT
 				t.id,
-				t.label
+				t.label,
+				pt.id post_tag_id
 			FROM Tags t
 			JOIN PostTags pt
 			WHERE pt.post_id = ? AND pt.tag_id = t.id
@@ -49,6 +50,7 @@ def get_all_posts():
 
 			for tag_row in tag_data:
 				tag = Tag(tag_row["id"], tag_row["label"])
+				tag.post_tag_id = tag_row["post_tag_id"]
 				tags.append(tag.__dict__)
 
 			post.user = user.__dict__
@@ -93,7 +95,8 @@ def get_single_post(id):
 		db_cursor.execute("""
 			SELECT
 				t.id,
-				t.label
+				t.label,
+				pt.id post_tag_id
 			FROM Tags t
 			JOIN PostTags pt
 			WHERE pt.post_id = ? AND pt.tag_id = t.id
@@ -104,6 +107,7 @@ def get_single_post(id):
 
 		for tag_row in tag_data:
 			tag = Tag(tag_row["id"], tag_row["label"])
+			tag.post_tag_id = tag_row["post_tag_id"];
 			tags.append(tag.__dict__)
 
 		post.user = user.__dict__
