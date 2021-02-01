@@ -150,7 +150,7 @@ def update_post(id, new_post):
         db_cursor.execute("""
 		UPDATE Posts
 			SET 
-				id =?
+				id =?,
 				user_id= ?,
 				category_id=?,
 				title= ?,
@@ -158,8 +158,8 @@ def update_post(id, new_post):
 				image_url= null,
 				content=?,
 				approved= null
-			WHERE id=?
-			""", ( new_post['id'],new_post['user_id'], 
+		WHERE id=?
+		""", ( new_post['id'],new_post['user_id'], 
         new_post['category_id'], new_post['title'], 
         new_post['publication_date'],
         new_post['content'], id,))
