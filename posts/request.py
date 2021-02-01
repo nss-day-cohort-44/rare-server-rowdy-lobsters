@@ -20,10 +20,13 @@ def get_all_posts():
 			p.content,
 			p.approved,
 			u.first_name,
-			u.last_name
+			u.last_name,
+			c.label
 		FROM Posts p
 		JOIN Users u
 			ON u.id = p.user_id
+		JOIN Categories c
+			on c.id = p.category_id
 		""")
 
 		data = db_cursor.fetchall()
@@ -78,10 +81,13 @@ def get_single_post(id):
 			p.content,
 			p.approved,
 			u.first_name,
-			u.last_name
+			u.last_name,
+			c.label
 		FROM Posts p
 		JOIN Users u
 			ON u.id = p.user_id
+		JOIN categories c
+			on c.id = p.category_id
 		WHERE p.id = ?
 		""", (id,))
 
