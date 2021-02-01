@@ -6,7 +6,7 @@ from users import get_single_user
 from users import create_user, login
 from categories import get_all_categories, get_single_category, create_category, delete_category
 from tags import get_all_tags, get_single_tag, create_tag, delete_tag
-from comments import get_all_comments, get_single_comment, create_comment
+from comments import get_all_comments, get_single_comment, create_comment, delete_comment
 from post_tags import get_all_post_tags, create_post_tag, delete_post_tag
 
 # A class responsible for responding to HTTP requests from a client.
