@@ -72,6 +72,7 @@ def create_comment(comment):
 
 		return json.dumps(comment)
 
+<<<<<<< HEAD
 def update_comment(id, new_comment):
     with sqlite3.connect("./rare.db") as conn:
         db_cursor = conn.cursor()
@@ -100,3 +101,14 @@ def update_comment(id, new_comment):
     else:
         # Forces 204 response by main module
         return True
+=======
+def delete_comment(id):
+	with sqlite3.connect("./rare.db") as conn:
+
+		db_cursor = conn.cursor()
+
+		db_cursor.execute("""
+			DELETE FROM Comments
+			WHERE id = ?
+		""", (id,))
+>>>>>>> main
