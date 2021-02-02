@@ -15,7 +15,6 @@ def get_all_users():
             u.last_name,
             u.email,
             u.username,
-            u.password,
             u.created_on,
             u.account_type_id
         FROM Users u
@@ -26,7 +25,7 @@ def get_all_users():
 
         for row in dataset:
             user=User(row['id'], row['first_name'], row['last_name'], row['email'], row['username'],
-            row['password'],
+            None,
             row['created_on'],
             row['account_type_id'])
 
@@ -45,7 +44,6 @@ def get_single_user(id):
             u.last_name,
             u.email,
             u.username,
-            u.password,
             u.created_on,
             u.account_type_id
         FROM Users u
@@ -57,7 +55,7 @@ def get_single_user(id):
 
         
         user = User(data['id'], data['first_name'], data['last_name'], data['email'], data['username'],
-        data['password'],
+        None,
         data['created_on'],
         data['account_type_id'])
 
@@ -96,21 +94,25 @@ def create_user(new_user):
         new_user['id']=id
     
     return json.dumps(new_user)
+   
+
 
 def login(current_user):
-    all_users=json.loads(get_all_users())
-    counter_list = list(enumerate(all_users, 0))
-    # print(counter_list)
-    found_user={}
-    for item in counter_list:
-        if current_user['username'] == item[1]['email'] and current_user['password']==item[1]['password']:
-            found_user=(item[1])
-            found_user['valid']=True
-            return json.dumps(found_user)
-    
-    found_user['valid']=False
-    return(json.dumps(found_user))
-    
+    with sqlite3.connect("./rare.db") as conn:
+        conn.row_factory=sqlite3.Row
+        db_cursor=conn.cursor()
+        db_cursor.execute("""
+            SELECT email, password, id
+            FROM users
+            WHERE email = ? AND password = ?
+        """, (current_user["username"], current_user["password"]))
 
+        data = db_cursor.fetchone()
 
-    
+        if data:
+            found_user = {"id": data["id"], 'valid': True}
+            
+        else:
+            found_user = {"valid": False}
+        
+        return(json.dumps(found_user))
