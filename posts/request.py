@@ -1,6 +1,7 @@
 import json
 import sqlite3
 from models import Post, User, Tag, Category
+from users import get_single_user
 
 def get_all_posts():
 
@@ -131,32 +132,41 @@ def get_single_post(id):
 		return json.dumps(post.__dict__)
 
 def create_post(new_post):
-    with sqlite3.connect("./rare.db") as conn:
-        conn.row_factory=sqlite3.Row
-        db_cursor=conn.cursor()
-        
-        db_cursor.execute("""
-        INSERT INTO Posts
-            (user_id,
+
+	with sqlite3.connect("./rare.db") as conn:
+		conn.row_factory=sqlite3.Row
+		db_cursor=conn.cursor()
+# get associated user
+# check user type
+# if usertype is 1, approved is True
+# if usertype is 2, approved is False
+		approved=False
+		myUser=json.loads(get_single_user(new_post['user_id']))
+		if myUser['account_type_id'] ==1:
+			approved=True
+
+		db_cursor.execute("""
+			INSERT INTO Posts
+			(user_id,
 			category_id,
 			title,
 			publication_date,
 			image_url,
 			content,
 			approved)
-        VALUES
-            ( ?, ?, ?, ?, null, ?, null)
-        """, ( new_post['user_id'], 
-        new_post['category_id'], new_post['title'], 
-        new_post['publication_date'],
-        new_post['content']))
+			VALUES
+			( ?, ?, ?, ?, null, ?, ?)
+			""", ( new_post['user_id'], 
+			new_post['category_id'], new_post['title'], 
+			new_post['publication_date'],
+			new_post['content'], approved))
 
-        id=db_cursor.lastrowid
+		id=db_cursor.lastrowid
 
-        new_post['id']=id
-    
-    return json.dumps(new_post)
-		
+		new_post['id']=id
+
+	return json.dumps(new_post)
+
 def update_post(id, new_post):
     with sqlite3.connect("./rare.db") as conn:
         db_cursor = conn.cursor()
@@ -172,12 +182,12 @@ def update_post(id, new_post):
 				publication_date=?,
 				image_url= null,
 				content=?,
-				approved= null
+				approved= ?
 		WHERE id=?
 		""", ( new_post['id'],new_post['user_id'], 
         new_post['category_id'], new_post['title'], 
         new_post['publication_date'],
-        new_post['content'], id,))
+        new_post['content'], new_post['approved'], id,))
 
         # Were any rows affected?
         # Did the client send an `id` that exists?

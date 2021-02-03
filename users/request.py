@@ -110,7 +110,7 @@ def login(current_user):
         conn.row_factory=sqlite3.Row
         db_cursor=conn.cursor()
         db_cursor.execute("""
-            SELECT email, password, id
+            SELECT email, password, id, account_type_id
             FROM users
             WHERE email = ? AND password = ?
         """, (current_user["username"], current_user["password"]))
@@ -118,7 +118,7 @@ def login(current_user):
         data = db_cursor.fetchone()
 
         if data:
-            found_user = {"id": data["id"], 'valid': True}
+            found_user = {"id": data["id"], 'valid': True, "account_type_id":data["account_type_id"]}
             
         else:
             found_user = {"valid": False}
