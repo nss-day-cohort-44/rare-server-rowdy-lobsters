@@ -109,7 +109,7 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         # Parse the URL
         (resource, id) = self.parse_url(self.path)
-
+        
         # Inititialize new post item
         new_item = None
         if resource == "categories":
