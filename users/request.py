@@ -53,19 +53,25 @@ def get_single_user(id):
             u.email,
             u.username,
             u.created_on,
-            u.account_type_id
+            u.account_type_id,
+            a.label
         FROM Users u
+        JOIN AccountTypes a
+            ON a.id = u.account_type_id
         WHERE u.id=?
         """, (id,))
 
         
         data=db_cursor.fetchone()
 
-        
         user = User(data['id'], data['first_name'], data['last_name'], data['email'], data['username'],
         None,
         data['created_on'],
         data['account_type_id'])
+
+        account_type = Account_Type(data['account_type_id'], data['label'])
+
+        user.account_type = account_type.__dict__
 
     return json.dumps(user.__dict__)
 
