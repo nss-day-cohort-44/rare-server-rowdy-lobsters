@@ -182,12 +182,12 @@ def update_post(id, new_post):
 				publication_date=?,
 				image_url= null,
 				content=?,
-				approved= null
+				approved= ?
 		WHERE id=?
 		""", ( new_post['id'],new_post['user_id'], 
         new_post['category_id'], new_post['title'], 
         new_post['publication_date'],
-        new_post['content'], id,))
+        new_post['content'], new_post['approved'], id,))
 
         # Were any rows affected?
         # Did the client send an `id` that exists?
