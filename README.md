@@ -1,11 +1,5 @@
 # rare-server-rowdy-lobsters
 
-## Getting started
-
-## Routes
-
-
-## Setting Up Database
 
 ### Pulling down the Server-Side Repo. 
  
@@ -203,3 +197,23 @@ INSERT INTO Users ('first_name','last_name','email','bio','username','password',
 INSERT INTO Users ('first_name','last_name','email','bio','username','password','profile_image_url',"created_on","active","account_type_id") VALUES ('Coach', 'Mo', 'mo@aol.com', null, 'mo@aol.com', 'YES', null, 1611955074767, null, 1);
 INSERT INTO Users ('first_name','last_name','email','bio','username','password','profile_image_url',"created_on","active","account_type_id") VALUES ('Coach', 'Madi', 'madi@aol.com', null, 'mo@aol.com', 'YES', null, 1611955074768, null, 1);
 ```
+## A guided workflow, if it so interests you
+
+1. Register a new account. **Do not use any sensitive credentials. This is not a secure application!** 
+1. Make a post of your own or view other users posts and comment on them.
+1. Edit or delete any of your own posts or comments.
+1. Add, edit, or delete Categories for your posts.
+1. Add, edit, or delete Tags for your posts.
+
+## Technologies Used
+
+This application was built using Python, Postman, and SQLite3  
+
+## Author
+
+NSS Cohort 44 Rowdy Lobsters 
+[Devin Kent](https://github.com/dalamcd) |
+[Mario Campopiano](https://github.com/mcampopiano) |
+[Will Bishop](https://github.com/billwishop) |
+[David Williams](https://github.com/dwilliams91) |
+[Jasmin Kaset](https://github.com/jkaset)
