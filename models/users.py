@@ -18,3 +18,4 @@ class User:
             self.created_on = created_on
 
         self.account_type_id=account_type_id
+        self.account_type = None

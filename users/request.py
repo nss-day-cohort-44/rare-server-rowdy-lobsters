@@ -1,6 +1,6 @@
 import sqlite3
 import json
-from models import User
+from models import User, Account_Type
 
 # GET METHODS HERE
 def get_all_users():
@@ -16,8 +16,12 @@ def get_all_users():
             u.email,
             u.username,
             u.created_on,
-            u.account_type_id
+            u.account_type_id,
+            a.label
         FROM Users u
+        JOIN AccountTypes a
+            ON a.id = u.account_type_id
+        ORDER BY u.username ASC
         """)
 
         users=[]
@@ -28,6 +32,10 @@ def get_all_users():
             None,
             row['created_on'],
             row['account_type_id'])
+
+            account_type = Account_Type(row['account_type_id'], row['label'])
+
+            user.account_type = account_type.__dict__
 
             users.append(user.__dict__)
     return json.dumps(users)
