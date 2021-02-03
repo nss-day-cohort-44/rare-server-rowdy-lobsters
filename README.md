@@ -9,7 +9,7 @@
 
 ### Pulling down the Server-Side Repo. 
  
-> Note: This project is meant to run simultaneously with the Client-Side Repo found here: https://github.com/nss-day-cohort-44/rare-rabid-sharks  
+> Note: This project is meant to run simultaneously with the Client-Side Repo found here: https://github.com/nss-day-cohort-44/rare-rowdy-lobsters 
  
 > Depending on which repo you start with, you may already have the following directories set up.  
 > This project requires Python  
@@ -32,7 +32,7 @@
  
 4. Enter the following commands: 
 	
-```git clone git@github.com:nss-day-cohort-44/rare-rabid-sharks.git .``` <-- note the single 	
+```git clone git@github.com:nss-day-cohort-44/rare-rowdy-lobsters.git .``` <-- note the single 	
 dot preceded by a single space.  
  
 5. Create a virtual environment: 
